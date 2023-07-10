@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Circle of squares</title>
+    <style>
+      #square-circle {
+        width: 500px;
+        height: 500px;
+        position: relative;
+      }
+
+      .square {
+        width: 25px;
+        height: 25px;
+        background-color: rgb(189, 40, 226);
+        position: absolute;
+        border-radius: 5px;
+      }
+    </style>
+    <link rel="stylesheet" href="js/tailwind.js" />
+  </head>
+  <body>
+    <div id="square-circle" class="flex"></div>
+    <script>
+      const container = document.getElementById("square-circle");
+      let radius = 200;
+      const numberOfSquares = 64;
+      const angleIncrement = (2 * Math.PI) / numberOfSquares;
+
+      for (let l = 0; l < 4; l++) {
+        let squaresParent = document.createElement("div");
+        squaresParent.style.width = "500px";
+        squaresParent.style.height = "500px";
+        container.appendChild(squaresParent);
+        radius -= 25;
+        for (let i = 0; i < numberOfSquares; i++) {
+          const square = document.createElement("div");
+          square.className = "square";
+          const angle = i * angleIncrement;
+          const x =
+            Math.round(radius * Math.cos(angle)) +
+            squaresParent.offsetWidth / 2 -
+            25;
+          const y =
+            Math.round(radius * Math.sin(angle)) +
+            squaresParent.offsetHeight / 2 -
+            25;
+          square.style.transform = `translate(${x}px, ${y}px)`;
+          squaresParent.appendChild(square);
+        }
+      }
+    </script>
+  </body>
+</html>
