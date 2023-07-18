@@ -11,7 +11,6 @@ getSquars.forEach((element) => {
       <h1 class="h1" style="z-index: 2" id="">${element.firstElementChild.textContent}</h1>
     </div>
       `;
-    console.log(element.firstElementChild.attributes);
   };
 });
 

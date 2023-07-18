@@ -1,55 +1,76 @@
-<!DOCTYPE html>
+! <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Circle of squares</title>
     <style>
-      #square-circle {
+      .square-circle {
         width: 500px;
         height: 500px;
       }
       .sq-parent {
         display: initial;
+        color: rgb(255, 0, 0);
       }
 
       .square {
         width: 40px;
         height: 40px;
-        background-color: rgb(189, 40, 226);
         position: absolute;
+      }
+      .sun-creat div {
+        background-color: orange;
+      }
+      .sq-intro {
+        display: inline-block;
+        background-color: orange;
+        width: 10px;
+        height: 100%;
+      }
+      body {
+        background: #efefef;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin-bottom: 2px;
+        color: white;
+        text-align: center;
+        line-height: 100px;
+        font-size: 24px;
+        font-family: "Roboto", sans-serif;
+        position: absolute;
+        top: 100px;
+      }
+      .green {
+        background-color: green;
+        z-index: 20;
+      }
+      .red {
+        background-color: red;
+        z-index: 10;
       }
     </style>
     <link rel="stylesheet" href="js/tailwind.js" />
   </head>
   <body>
+    <div class="box green" id="box2">2</div>
+
     <script>
-      const container = document.getElementById("square-circle");
-      let radius = 250;
-      const numberOfSquares = 63;
-      const angleIncrement = (2 * Math.PI) / numberOfSquares;
+      //to uncomment muitble lines of code ctrl + /
+      //to comment muitble lines of code ctrl + /
 
-      for (let l = 0; l < 10; l++) {
-        let squaresParent = document.createElement("div");
+      //intro 1
 
-        squaresParent.classList.add("sq-parent");
-        container.appendChild(squaresParent);
-        radius -= 25;
-        for (let i = 0; i < numberOfSquares; i++) {
-          const square = document.createElement("div");
-          square.className = "square";
-          const angle = i * angleIncrement;
-          let x =
-            Math.round(radius * Math.cos(angle)) +
-            container.offsetWidth / 2 -
-            25;
-          let y =
-            Math.round(radius * Math.sin(angle)) +
-            container.offsetHeight / 2 -
-            25;
-          square.style.transform = `translate(${x}px, ${y}px)`;
-          squaresParent.appendChild(square);
-        }
-      }
+      //intro 2
+      let tl = new TimelineMax({ repeat: -1, yoyo: true, repeatDelay: 0.5 });
+
+      tl.to("#box2", 1, { y: -100 });
+      tl.set("#box2", { zIndex: 5 });
+      tl.to("#box2", 1, { y: 0 });
     </script>
+    <script src="js/gsap.min.js"></script>
   </body>
 </html>
